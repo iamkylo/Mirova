@@ -10,12 +10,14 @@ const API_TARGET = process.env.API_TARGET || (process.env.VERCEL ? "" : "http://
  */
 const SECRET_NAME = /(KEY|SECRET|TOKEN|PASSWORD|CREDENTIAL|APIKEY)/i;
 const OPENROUTER_KEY = /^sk-or-(?:v1-)?[A-Za-z0-9_-]{16,}/;
+// Vercel injects these as VITE_VERCEL_* — they are non-secret system metadata.
+const SAFE_PREFIX = /^VITE_VERCEL_/;
 
 function secretGuard(mode) {
   const exposed = loadEnv(mode, process.cwd(), "VITE_");
 
   const suspect = Object.entries(exposed)
-    .filter(([, v]) => v && (OPENROUTER_KEY.test(v) || (SECRET_NAME.test(v) && v.length > 12)))
+    .filter(([k, v]) => v && !SAFE_PREFIX.test(k) && (OPENROUTER_KEY.test(v) || (SECRET_NAME.test(k) && v.length > 12)))
     .map(([k]) => k);
 
   // A VITE_ var that merely *contains* a real secret from the environment is
@@ -24,7 +26,7 @@ function secretGuard(mode) {
     .filter(([k, v]) => !k.startsWith("VITE_") && SECRET_NAME.test(k) && v && v.length >= 16)
     .map(([, v]) => v);
   for (const [name, value] of Object.entries(exposed)) {
-    if (value && secrets.some(s => value.includes(s))) suspect.push(name);
+    if (value && !SAFE_PREFIX.test(name) && secrets.some(s => value.includes(s))) suspect.push(name);
   }
 
   if (suspect.length) {
