@@ -4,7 +4,7 @@
 
 Mirova is the browser-facing name for this whiteboard. The source package and internal engine use the `mirova` name. Draw, paste, annotate, share, and optionally ask a vision model to interpret the complete board and turn it into an editable diagram.
 
-[Legacy Cicada demo](https://ansel-s.github.io/Cicada/)
+
 
 ---
 
