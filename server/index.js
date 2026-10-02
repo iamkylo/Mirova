@@ -47,7 +47,7 @@ app.use((err, _req, res, _next) => {
 
 const info = describeProvider();
 app.listen(config.port, () => {
-  console.log(`\n  Cicada API  →  http://localhost:${config.port}`);
+  console.log(`\n  Mirova API  →  http://localhost:${config.port}`);
   console.log(`  provider    →  ${info.provider}${info.provider === 'mock' && config.provider !== 'mock' ? '  (fallback: no API key found)' : ''}`);
   console.log(`  model       →  ${info.model}`);
   if (!providerReady() && config.provider !== 'mock') {

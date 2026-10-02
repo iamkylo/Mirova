@@ -13,14 +13,14 @@ export default function App() {
 
   // ── Dark mode state ──
   const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem('cicada-theme');
+    const saved = localStorage.getItem('mirova-theme');
     if (saved) return saved === 'dark';
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-    localStorage.setItem('cicada-theme', isDark ? 'dark' : 'light');
+    localStorage.setItem('mirova-theme', isDark ? 'dark' : 'light');
     // Notify the engine about theme change so it can update canvas colors
     if (canvas.engineRef.current) {
       canvas.engineRef.current.setDarkMode?.(isDark);

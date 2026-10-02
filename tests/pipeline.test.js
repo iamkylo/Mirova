@@ -15,9 +15,9 @@ const [{ config }, { generateDiagram, describeProvider, AIError }, { aiRouter },
   import('../server/routes/ai.js'),
   import('../shared/diagramSchema.js'),
   import('../src/ai/layout.js'),
-  import('../src/ai/toCicada.js'),
+  import('../src/ai/toMirova.js'),
   import('../src/services/capture.js'),
-  import('../src/engine/cicadaEngine.js'),
+  import('../src/engine/mirovaEngine.js'),
 ]);
 
 const { validateDiagram, isEmptyDiagram } = schema;
@@ -240,7 +240,7 @@ test('OpenRouter rate limits become a clean retryable 429 response', async () =>
   }
 });
 
-test('agentic-only model errors explain that Cicada needs a chat-completions model', async () => {
+test('agentic-only model errors explain that Mirova needs a chat-completions model', async () => {
   config.provider = 'openrouter';
   config.openrouter.apiKey = 'unit-test-key';
   const originalFetch = globalThis.fetch;

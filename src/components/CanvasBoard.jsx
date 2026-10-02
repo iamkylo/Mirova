@@ -6,7 +6,7 @@ export function CanvasBoard({ canvas }) {
       {/* The engine grabs these four nodes by id and owns them imperatively.
           The textarea must stay uncontrolled (defaultValue) so the engine can
           drive .value / .style during text placement. */}
-      <div id="cicada-root" ref={rootRef}>
+      <div id="mirova-root" ref={rootRef}>
         <canvas id="base" />
         <canvas id="live" />
         <canvas id="cur" />

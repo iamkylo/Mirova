@@ -30,7 +30,7 @@ export const config = {
     baseUrl: process.env.OPENROUTER_BASE_URL || 'https://openrouter.ai/api/v1',
     // Optional attribution headers OpenRouter asks for; safe to leave blank.
     referer: process.env.OPENROUTER_REFERER || '',
-    title: process.env.OPENROUTER_TITLE || 'Cicada Whiteboard',
+    title: process.env.OPENROUTER_TITLE || 'Mirova Whiteboard',
   },
 
   limits: {

@@ -1,14 +1,14 @@
 /**
  * THE ADAPTER.
  *
- * Semantic diagram → Cicada's native stroke objects, and nothing else. Every
+ * Semantic diagram → Mirova's native stroke objects, and nothing else. Every
  * value it emits is one of the four shapes renderStroke() understands, with
  * colours, widths and font sizes snapped to the palette the binary codec can
  * actually serialise. The existing canvas renderer, undo history, eraser and
  * share-link codec all keep working on AI output for free, and the result
  * stays fully hand-editable.
  */
-import { COLORS, PEN_W, FONT_SZ, measureTextBlock, contentBounds } from '../engine/cicadaEngine.js';
+import { COLORS, PEN_W, FONT_SZ, measureTextBlock, contentBounds } from '../engine/mirovaEngine.js';
 import { TITLE_FS } from './layout.js';
 
 const NODE_W = PEN_W[1]; // 6
@@ -60,7 +60,7 @@ function arc(cx, cy, rx, ry, a0, a1, steps = 28) {
 }
 
 /**
- * Cicada stores text as (x, y) = left edge of line 1 at its BASELINE. Convert
+ * Mirova stores text as (x, y) = left edge of line 1 at its BASELINE. Convert
  * a desired optical centre into that.
  */
 function centeredText(text, cx, cy, fs, color) {
@@ -120,7 +120,7 @@ function palette(i) {
 /**
  * @param {ReturnType<import('./layout.js').layoutDiagram>} layout
  * @param {{origin?:{x:number,y:number}}} [opts] translate the whole diagram (used by "Add beside sketch")
- * @returns {Array} Cicada strokes, ready for engine.applyStrokes / appendStrokes
+ * @returns {Array} Mirova strokes, ready for engine.applyStrokes / appendStrokes
  */
 export function diagramToStrokes(layout, opts = {}) {
   if (!layout || layout.empty) return [];

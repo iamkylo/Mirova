@@ -50,7 +50,7 @@ export async function openrouterComplete({ messages, maxTokens, signal, timeoutM
       const message = kind === 'rate_limited'
         ? 'The selected model is temporarily rate-limited. Wait a moment and retry, or choose another model.'
         : res.status === 403 && /only available on agentic harnesses/i.test(detail)
-          ? 'This model requires an agentic harness and cannot be used with Cicada. Choose a standard chat-completions vision model.'
+          ? 'This model requires an agentic harness and cannot be used with Mirova. Choose a standard chat-completions vision model.'
           : kind === 'unavailable'
             ? 'OpenRouter cannot serve this model request. Check model access and endpoint requirements, or choose another model.'
             : `Provider responded ${res.status}${detail ? `: ${detail}` : ''}`;

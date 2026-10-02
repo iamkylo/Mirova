@@ -2,7 +2,7 @@
 
 **A minimal digital whiteboard with editable AI Sketch → Diagram.**
 
-Mirova is the browser-facing name for this whiteboard. The source package and internal engine retain the historical `cicada` name. Draw, paste, annotate, share, and optionally ask a vision model to interpret the complete board and turn it into an editable diagram.
+Mirova is the browser-facing name for this whiteboard. The source package and internal engine use the `mirova` name. Draw, paste, annotate, share, and optionally ask a vision model to interpret the complete board and turn it into an editable diagram.
 
 [Legacy Cicada demo](https://ansel-s.github.io/Cicada/)
 
@@ -63,12 +63,12 @@ AI_MODEL=provider/vision-chat-model
 Restart the API after changing `.env`. The server banner and `GET /api/health` confirm what it picked up:
 
 ```
-  Cicada API  →  http://localhost:8787
+  Mirova API  →  http://localhost:8787
   provider    →  openrouter
   model       →  provider/vision-chat-model
 ```
 
-Free model routes can be temporarily rate-limited. The UI reports that separately; retry later or select another compatible model. If the model is restricted to an agentic harness, Cicada's chat-completions request will be rejected. If no key is present, AI conversion is unavailable while the local whiteboard remains usable.
+Free model routes can be temporarily rate-limited. The UI reports that separately; retry later or select another compatible model. If the model is restricted to an agentic harness, Mirova's chat-completions request will be rejected. If no key is present, AI conversion is unavailable while the local whiteboard remains usable.
 
 ### 3. Try it without a key
 
@@ -125,7 +125,7 @@ The screenshot button uses the same board renderer as AI capture. It previews a 
 
 ### Themes, Fonts, and Brand
 
-Theme choice persists in `localStorage` and otherwise follows the system preference. Geist is used for website controls; the bundled Absans font is reserved for board text. `index.html` sets the browser-tab title to **Mirova** and loads the local `src/assets/cicada-mark.svg` favicon.
+Theme choice persists in `localStorage` and otherwise follows the system preference. Geist is used for website controls; the bundled Absans font is reserved for board text. `index.html` sets the browser-tab title to **Mirova** and loads the local `src/assets/mirova-mark.svg` favicon.
 
 ---
 
@@ -144,7 +144,7 @@ Canvas stroke/image objects
   → authoritative server validateDiagram()
   → browser validates the returned diagram again
   → layoutDiagram() computes geometry locally (no model coordinates trusted)
-  → diagramToStrokes() adapts nodes/edges to native Cicada strokes
+  → diagramToStrokes() adapts nodes/edges to native Mirova strokes
   → same renderer captures a preview; user chooses Replace, Add beside, or Discard
   → replace uses applyStrokes(); Add beside uses appendStrokes(); both create one undo step
 ```
@@ -170,7 +170,7 @@ All of these live in **`server/.env`**, which is read only by Node. None are exp
 | `AI_MODEL` | `qwen/qwen-2.5-vl-72b-instruct` | OpenRouter model ID. Must accept image input on the standard Chat Completions endpoint and return text. |
 | `OPENROUTER_BASE_URL` | `https://openrouter.ai/api/v1` | Override for proxies or self-hosting. |
 | `OPENROUTER_REFERER` | *(empty)* | Optional attribution header OpenRouter asks for. |
-| `OPENROUTER_TITLE` | `Cicada Whiteboard` | Optional attribution header. |
+| `OPENROUTER_TITLE` | `Mirova Whiteboard` | Optional attribution header. |
 
 ### Server
 
@@ -286,12 +286,12 @@ src/
     Toolbar.jsx            tools, palettes, widths, history, screenshot, AI, share
     AIPanel.jsx            hint, conversion state, preview, replace/add/discard
   engine/
-    cicadaEngine.js        three-layer canvas, paste, shape prediction, renderer,
+    mirovaEngine.js        three-layer canvas, paste, shape prediction, renderer,
                            image/text/pen strokes, binary codec, undo/redo
   hooks/useCanvas.js       low-frequency React ↔ engine state bridge
   ai/
     layout.js              deterministic layered graph layout and edge routing
-    toCicada.js            semantic graph → native editable strokes
+    toMirova.js            semantic graph → native editable strokes
   services/
     capture.js             board strokes/images → PNG via the engine renderer
     diagramClient.js       API fetch, errors, client-side schema validation
@@ -312,7 +312,7 @@ tests/
   pipeline.test.js         offline pipeline, error, codec and palette regressions
 src/assets/
   Absans-Regular.woff2     board text font
-  cicada-mark.svg          Mirova browser-tab mark
+  mirova-mark.svg          Mirova browser-tab mark
 ```
 
 The canvas engine stays imperative on purpose: high-frequency pointer work lives in refs and direct canvas calls, not React state. React renders the interface, not each pointer frame.

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { contentBounds } from '../engine/cicadaEngine.js';
+import { contentBounds } from '../engine/mirovaEngine.js';
 import { layoutDiagram } from '../ai/layout.js';
 import { diagramToStrokes } from '../ai/toMirova.js';
 import { captureBoard } from '../services/capture.js';
@@ -12,7 +12,7 @@ import { isEmptyDiagram } from '../../shared/diagramSchema.js';
  * Nothing leaves the browser until the user presses Convert: the board is
  * rasterised on click, sent to our own Express server, and only the structured
  * JSON comes back. The model never sees pointer events and never returns
- * pixels or coordinates — layout is computed locally and mapped onto Cicada's
+ * pixels or coordinates — layout is computed locally and mapped onto Mirova's
  * existing stroke objects, so the result is ordinary editable ink.
  */
 
@@ -82,7 +82,7 @@ export function AIPanel({ canvas, open, onClose }) {
         return;
       }
 
-      // Local layout + the adapter turn semantics into Cicada strokes. The
+      // Local layout + the adapter turn semantics into Mirova strokes. The
       // preview is rendered by the same captureBoard() the upload used, so
       // what the user approves is literally what gets drawn.
       const layout = layoutDiagram(diagram);

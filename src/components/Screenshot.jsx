@@ -52,7 +52,7 @@ export function ScreenshotButton({ canvas }) {
     if (!screenshot) return;
     const a = document.createElement('a');
     a.href = screenshot.dataUrl;
-    a.download = `cicada-${Date.now()}.png`;
+    a.download = `mirova-${Date.now()}.png`;
     a.click();
   }, [screenshot]);
 
@@ -136,7 +136,7 @@ export function useScreenshot(canvas) {
     if (!screenshot) return;
     const a = document.createElement('a');
     a.href = screenshot.dataUrl;
-    a.download = `cicada-${Date.now()}.png`;
+    a.download = `mirova-${Date.now()}.png`;
     a.click();
   }, [screenshot]);
 

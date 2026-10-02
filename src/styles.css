@@ -102,7 +102,7 @@ html,body{
     transition:background .4s ease
 }
 
-#cicada-root{display:contents}
+#mirova-root{display:contents}
 
 #base,#live,#cur{
     position:fixed;

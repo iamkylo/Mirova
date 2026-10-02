@@ -1,4 +1,4 @@
-import { contentBounds, renderStrokes, isDarkMode } from '../engine/cicadaEngine.js';
+import { contentBounds, renderStrokes, isDarkMode } from '../engine/mirovaEngine.js';
 
 /**
  * Rasterise the board for the vision model.

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { createCicadaEngine, COLORS, PEN_W, TOOLS, getColors } from '../engine/cicadaEngine.js';
+import { createMirovaEngine, COLORS, PEN_W, TOOLS, getColors } from '../engine/mirovaEngine.js';
 
 /**
  * Owns the engine lifecycle and mirrors only low-frequency board state into
@@ -22,7 +22,7 @@ export function useCanvas() {
   useEffect(() => {
     if (!rootRef.current) return;
 
-    const engine = createCicadaEngine(rootRef.current, {
+    const engine = createMirovaEngine(rootRef.current, {
       onToolChange: setTool,
       onColorChange: setColorIndex,
       onWidthChange: setWidthIndex,
@@ -51,8 +51,8 @@ export function useCanvas() {
   // Dev-only escape hatch for inspecting board state; stripped from prod builds.
   useEffect(() => {
     if (!import.meta.env.DEV) return;
-    window.__cicada = { get engine() { return engineRef.current; } };
-    return () => { delete window.__cicada; };
+    window.__mirova = { get engine() { return engineRef.current; } };
+    return () => { delete window.__mirova; };
   }, [ready]);
 
   const selectTool = useCallback(t => engineRef.current?.setTool(t), []);

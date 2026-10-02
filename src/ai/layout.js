@@ -4,9 +4,9 @@
  * The model never sends coordinates (it is bad at them, and untrusted input
  * with pixel values is a liability). It sends a graph; this module turns that
  * graph into a layered layout — ranks, ordering, node sizes, edge routes —
- * using Cicada's own text metrics so labels always fit their shapes.
+ * using Mirova's own text metrics so labels always fit their shapes.
  */
-import { FONT_SZ, measureTextBlock } from '../engine/cicadaEngine.js';
+import { FONT_SZ, measureTextBlock } from '../engine/mirovaEngine.js';
 
 export const NODE_FS = FONT_SZ[0];
 export const TITLE_FS = FONT_SZ[1];
