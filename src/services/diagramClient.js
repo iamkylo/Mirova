@@ -3,8 +3,9 @@ import { validateDiagram, extractJson } from '../../shared/diagramSchema.js';
 /**
  * Non-secret only: this is the API's base URL. The OpenRouter key lives in
  * server/.env and is read by Node alone — see the guard in vite.config.js.
+ * On Vercel, use relative paths since the API is served from the same domain.
  */
-const BASE = (import.meta.env.VITE_API_BASE || '').replace(/\/$/, '');
+const BASE = (import.meta.env.VITE_API_BASE || '').replace(/\/$/, '') || '';
 
 export class AIError extends Error {
   constructor(message, kind = 'server') {
