@@ -26,6 +26,11 @@ Mirova is the browser-facing name for this whiteboard. The source package and in
 
 ## 🚀 Quick Start
 
+
+<img width="1882" height="296" alt="image" src="https://github.com/user-attachments/assets/ac4097d2-794f-4a91-ab3c-9c1f74f8cf96" />
+
+
+
 ### 1. Install and run
 
 ```bash
