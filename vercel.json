@@ -13,7 +13,7 @@
   ],
   "functions": {
     "api/index.js": {
-      "runtime": "nodejs22.x",
+      "runtime": "nodejs24.x",
       "maxDuration": 60
     }
   }

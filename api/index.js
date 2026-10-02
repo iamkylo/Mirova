@@ -21,8 +21,8 @@ app.use(cors({
 
 app.use(express.json({ limit: config.limits.maxBodyBytes }));
 
-app.get('/health', (_req, res) => res.json({ ok: true, ...describeProvider() }));
-app.use('/ai', aiRouter);
+app.get('/api/health', (_req, res) => res.json({ ok: true, ...describeProvider() }));
+app.use('/api/ai', aiRouter);
 
 // Anything else under /api is a client bug, not a missing page.
 app.use((_req, res) => res.status(404).json({ error: { kind: 'not_found', message: 'Unknown API route.' } }));

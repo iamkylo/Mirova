@@ -94,6 +94,31 @@ Run the offline pipeline regression tests with:
 npm test
 ```
 
+### 5. Deploy to Vercel
+
+The project is configured for Vercel deployment with serverless functions.
+
+**Environment Variables (Vercel Dashboard → Settings → Environment Variables):**
+
+```
+AI_PROVIDER=openrouter
+OPENROUTER_API_KEY=your-actual-api-key-here
+AI_MODEL=qwen/qwen-2.5-vl-72b-instruct
+OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
+OPENROUTER_REFERER=
+OPENROUTER_TITLE=Mirova Whiteboard
+```
+
+**Important:** `OPENROUTER_API_KEY` is a server-side secret. It must:
+- Never be committed to Git
+- Never be prefixed with `VITE_` (which would expose it to the browser)
+- Only exist in Vercel Environment Variables for production
+- Only exist in `server/.env` for local development (which is gitignored)
+
+The build-time guard in `vite.config.js` will fail the build if any credential-like variable is exposed to the browser bundle.
+
+Deployment uses Node.js 24.x serverless functions with a 60-second timeout.
+
 ---
 
 ## Board Features and Controls
